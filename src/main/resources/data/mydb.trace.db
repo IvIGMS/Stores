@@ -1,0 +1,15 @@
+2025-03-19 21:22:41.601861+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ADDRESSES" not found (this database is empty); SQL statement:
+insert into addresses (city,country,street,id) values (?,?,?,default) [42104-232]
+2025-03-19 21:23:16.589617+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ADDRESSES" not found (this database is empty); SQL statement:
+insert into addresses (city,country,street,id) values (?,?,?,default) [42104-232]
+2025-03-19 21:25:16.066943+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ADDRESSES" not found (this database is empty); SQL statement:
+insert into addresses (city,country,street,id) values (?,?,?,default) [42104-232]
+2025-03-19 21:27:49.222134+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ADDRESSES" not found (this database is empty); SQL statement:
+insert into addresses (city,country,street,id) values (?,?,?,default) [42104-232]
+2025-03-19 21:33:28.953069+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]seelct * from stores"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+seelct * from stores [42001-232]

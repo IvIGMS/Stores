@@ -28,10 +28,9 @@ public class StoreService {
     public StoreDTO createStore(StoreRequestDTO storeRequestDTO) {
 
         try{
-            StoreEntity storeEntity = storeRepository.save(
-                    storeEntityStoreRequestDTOMapper.storeRequestDTOToStoreEntity(storeRequestDTO)
-            );
-            return storeEntityStoreDTOMapper.storeEntityToStoreDTO(storeEntity);
+            StoreEntity storeEntityToBeSaved = storeEntityStoreRequestDTOMapper.storeRequestDTOToStoreEntity(storeRequestDTO);
+            StoreEntity storeEntitySaved = storeRepository.save(storeEntityToBeSaved);
+            return storeEntityStoreDTOMapper.storeEntityToStoreDTO(storeEntitySaved);
         } catch (Exception e){
             throw new DataBaseErrorException("Error al introducir al nueva tienda en la base de datos");
         }
