@@ -50,7 +50,7 @@ paths:
       operationId: getStoreById
       responses:
         '200':
-          $ref: '#/components/responses/ListStores'
+          $ref: '#/components/responses/Store'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -83,8 +83,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/StoreRequestDTO'
       responses:
-        '204':
-          description: Store created successfully, no content returned.
+        '200':
+          $ref: '#/components/responses/Store'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':

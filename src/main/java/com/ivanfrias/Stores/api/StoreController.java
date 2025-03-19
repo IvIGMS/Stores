@@ -20,7 +20,8 @@ public class StoreController implements StoresApi {
 
     @Override
     public ResponseEntity<Void> deleteStoreById(Long storeId) {
-        return StoresApi.super.deleteStoreById(storeId);
+        storeService.deleteById(storeId);
+        return ResponseEntity.noContent().build();
     }
 
     @Override
@@ -29,17 +30,17 @@ public class StoreController implements StoresApi {
     }
 
     @Override
-    public ResponseEntity<List<StoreDTO>> getStoreById(Long storeId) {
-        return StoresApi.super.getStoreById(storeId);
+    public ResponseEntity<StoreDTO> updateStoreById(Long storeId, StoreRequestDTO storeRequestDTO) {
+        return ResponseEntity.ok(storeService.updateById(storeId, storeRequestDTO));
+    }
+
+    @Override
+    public ResponseEntity<StoreDTO> getStoreById(Long storeId) {
+        return ResponseEntity.ok(storeService.getById(storeId));
     }
 
     @Override
     public ResponseEntity<List<StoreDTO>> getStores() {
         return ResponseEntity.ok(storeService.getStores());
-    }
-
-    @Override
-    public ResponseEntity<Void> updateStoreById(Long storeId, StoreRequestDTO storeRequestDTO) {
-        return StoresApi.super.updateStoreById(storeId, storeRequestDTO);
     }
 }
