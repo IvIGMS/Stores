@@ -4,6 +4,7 @@ import com.ivanfrias.Stores.services.StoreService;
 import com.ivanfrias.stores.api.StoresApi;
 import com.ivanfrias.stores.model.StoreDTO;
 import com.ivanfrias.stores.model.StoreRequestDTO;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class StoreController implements StoresApi {
     private final StoreService storeService;
 
     @Override
+    @Transactional
     public ResponseEntity<Void> deleteStoreById(Long storeId) {
         storeService.deleteById(storeId);
         return ResponseEntity.noContent().build();

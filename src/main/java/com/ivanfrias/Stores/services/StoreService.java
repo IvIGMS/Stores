@@ -9,7 +9,6 @@ import com.ivanfrias.Stores.model.StoreEntity;
 import com.ivanfrias.Stores.repositories.StoreRepository;
 import com.ivanfrias.stores.model.StoreDTO;
 import com.ivanfrias.stores.model.StoreRequestDTO;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -24,6 +23,7 @@ public class StoreService {
     private final StoreEntityStoreDTOMapper storeEntityStoreDTOMapper;
     private final StoreEntityStoreRequestDTOMapper storeEntityStoreRequestDTOMapper;
     private final AddressMapper addressMapper;
+    private final AddressService addressService;
 
     public StoreDTO createStore(StoreRequestDTO storeRequestDTO) {
 
@@ -54,12 +54,22 @@ public class StoreService {
         }
     }
 
+    public StoreEntity getEntityById(Long storeId) {
+        Optional<StoreEntity> storeEntityOptional = storeRepository.findById(storeId);
+        if (storeEntityOptional.isPresent()){
+            return storeEntityOptional.get();
+        } else {
+            throw new NotFoundException("No existe una store con el id: {}", storeId);
+        }
+    }
+
     public void deleteById(Long storeId) {
-        StoreDTO storeDTO = getById(storeId);
+        StoreEntity store = getEntityById(storeId);
         try {
             storeRepository.deleteById(storeId);
+            addressService.deleteAddress(store.getAddress().getId());
         } catch (Exception e){
-            throw new DataBaseErrorException("Error al eliminar la tienda de la base de datos");
+            throw new DataBaseErrorException("Error al eliminar la tienda o dirección de la base de datos");
         }
     }
 
