@@ -3,15 +3,15 @@ version: '3.8'
 services:
   db:
     image: postgres:16
-    container_name: stores-db
+    container_name: auth-service-db
     environment:
-      POSTGRES_DB: stores
+      POSTGRES_DB: auth_services
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - "5434:5432"
+      - "5445:5432"
     volumes:
-      - stores_data:/var/lib/postgresql/data
+      - auth_services_data:/var/lib/postgresql/data
 
 volumes:
-  stores_data:
+  auth_services_data:
